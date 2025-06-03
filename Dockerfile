@@ -20,7 +20,7 @@ RUN set -ex; \
     make menuselect/menuselect menuselect-tree menuselect.makeopts; \
     menuselect/menuselect --disable BUILD_NATIVE menuselect.makeopts; \
     echo ">>DISABLE deprecated modules/apps"; \
-    menuselect/menuselect --disable chan_sip menuselect.makeopts; \
+    # menuselect/menuselect --disable chan_sip menuselect.makeopts; \
     menuselect/menuselect --disable res_adsi menuselect.makeopts; \
     menuselect/menuselect --disable app_adsiprog menuselect.makeopts; \
     menuselect/menuselect --disable app_getcpeid menuselect.makeopts; \
@@ -223,7 +223,7 @@ RUN set -ex; \
     apt-get install -y --no-install-recommends  \
        wget sox tzdata libedit2 libjansson4 libsqlite3-0 libuuid1 libxml2 uuid-runtime  \
        jq curl \
-       liburiparser1 libgsm1 libcurl4 libsrtp2-dev libsrtp2-1; \
+       liburiparser1 libgsm1 libcurl4 libcurl4-openssl-dev libssl-dev openssl libsrtp2-dev libsrtp2-1; \
     apt-get clean && rm -rf /var/lib/{apt,dpkg,cache,log};
 
 COPY --from=builder /var/spool/asterisk /var/spool/asterisk
