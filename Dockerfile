@@ -213,7 +213,7 @@ RUN set -ex; \
     make config; \
     mkdir -p /etc/asterisk/keys; \
     ./contrib/scripts/ast_tls_cert -C agentvoiceresponse.local -O "Agent Voice Response" -d /etc/asterisk/keys -e; \
-    chmod 600 /etc/asterisk/keys/*.*; \
+    ./contrib/scripts/ast_tls_cert -m client -c /etc/asterisk/keys/ca.crt -k /etc/asterisk/keys/ca.key -d /etc/asterisk/crt -e; \
     apt-get remove -y --purge --auto-remove build-essential software-properties-common lib*dev; \
     apt-get clean && rm -rf /var/lib/{apt,dpkg,cache,log}; \
     rm -rf /usr/src/${AST_VERSION}* && rm -rf /usr/src/asterisk*;
