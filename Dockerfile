@@ -260,8 +260,8 @@ RUN sed -i 's/enabled = no/enabled = yes/' /etc/asterisk/manager.conf; \
     sed -i 's/bindaddr=127.0.0.1/bindaddr=0.0.0.0/' /etc/asterisk/http.conf; \
     sed -i 's/;tlsenable=yes/tlsenable=yes/' /etc/asterisk/http.conf; \
     sed -i 's/;tlsbindaddr=0.0.0.0:8089/tlsbindaddr=0.0.0.0:8089/' /etc/asterisk/http.conf; \
-    sed -i 's/;tlscertfile=/tlscertfile=/etc/asterisk/keys/asterisk.crt/' /etc/asterisk/http.conf; \
-    sed -i 's/;tlsprivatekey=/tlsprivatekey=/etc/asterisk/keys/asterisk.key/' /etc/asterisk/http.conf; 
+    sed -i 's/;tlscertfile=/tlscertfile=\/etc\/asterisk\/keys\/asterisk.crt/' /etc/asterisk/http.conf; \
+    sed -i 's/;tlsprivatekey=/tlsprivatekey=\/etc\/asterisk\/keys\/asterisk.key/' /etc/asterisk/http.conf; 
 
 RUN echo "#include \"my_extensions.conf\"" >> "/etc/asterisk/extensions.conf"; \
     echo "#include \"my_pjsip.conf\"" >> "/etc/asterisk/pjsip.conf"; \
