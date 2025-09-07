@@ -211,6 +211,9 @@ RUN set -ex; \
     make install; \
     make samples; \
     make config; \
+    mkdir -p /etc/asterisk/keys; \
+    ./contrib/scripts/ast_tls_cert -C agentvoiceresponse.local -O "Agent Voice Response" -d /etc/asterisk/keys -e; \
+    chmod 600 /etc/asterisk/keys/*.*; \
     apt-get remove -y --purge --auto-remove build-essential software-properties-common lib*dev; \
     apt-get clean && rm -rf /var/lib/{apt,dpkg,cache,log}; \
     rm -rf /usr/src/${AST_VERSION}* && rm -rf /usr/src/asterisk*;
@@ -251,9 +254,11 @@ COPY --from=builder /usr/lib/libasteriskssl.so.1 \
 
 RUN sed -i 's/enabled = no/enabled = yes/' /etc/asterisk/manager.conf; \
     sed -i 's/rtpend=20000/rtpend=10050/' /etc/asterisk/rtp.conf; \
+    sed -i 's/; stunaddr=/stunaddr=stun.l.google.com:19302/' /etc/asterisk/rtp.conf; \
     sed -i 's/enabled = no/enabled = yes/' /etc/asterisk/prometheus.conf; \
     sed -i 's/;enabled=yes/enabled=yes/' /etc/asterisk/http.conf; \
-    sed -i 's/bindaddr=127.0.0.1/bindaddr=0.0.0.0/' /etc/asterisk/http.conf;
+    sed -i 's/bindaddr=127.0.0.1/bindaddr=0.0.0.0/' /etc/asterisk/http.conf; \
+    sed -i 's/;enable_static=yes/enable_static=yes/' /etc/asterisk/http.conf; 
 
 
 RUN echo "#include \"my_extensions.conf\"" >> "/etc/asterisk/extensions.conf"; \
