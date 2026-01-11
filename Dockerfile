@@ -236,8 +236,8 @@ COPY --from=builder /usr/lib/asterisk /usr/lib/asterisk
 COPY --from=builder /etc/asterisk /etc/asterisk
 
 COPY --from=builder /usr/sbin/astcanary \
-                    /usr/sbin/astdb2bdb \
-                    /usr/sbin/astdb2sqlite3 \
+                    # /usr/sbin/astdb2bdb \
+                    # /usr/sbin/astdb2sqlite3 \
                     /usr/sbin/asterisk \
                     /usr/sbin/astgenkey \
                     /usr/sbin/astversion \
