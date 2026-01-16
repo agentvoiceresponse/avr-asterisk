@@ -111,7 +111,6 @@ RUN set -ex; \
     menuselect/menuselect --disable pbx_loopback menuselect.makeopts; \
     menuselect/menuselect --disable pbx_dundi menuselect.makeopts; \
     menuselect/menuselect --disable func_env menuselect.makeopts; \
-    menuselect/menuselect --disable func_speex menuselect.makeopts; \
     menuselect/menuselect --disable func_srv menuselect.makeopts; \
     menuselect/menuselect --disable func_groupcount menuselect.makeopts; \
     menuselect/menuselect --disable func_holdintercept menuselect.makeopts; \
@@ -201,6 +200,7 @@ RUN set -ex; \
     menuselect/menuselect --enable func_pjsip_endpoint menuselect.makeopts; \
     menuselect/menuselect --enable func_pjsip_contact menuselect.makeopts; \
     menuselect/menuselect --enable func_pjsip_aor menuselect.makeopts; \
+    menuselect/menuselect --enable func_speex menuselect.makeopts; \
     menuselect/menuselect --enable chan_audiosocket menuselect.makeopts; \
     menuselect/menuselect --enable codec_gsm menuselect.makeopts; \
     menuselect/menuselect --enable format_gsm menuselect.makeopts; \
